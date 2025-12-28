@@ -10,20 +10,21 @@ def get_exam_eligibility(percentage):
         return "Not Eligible"
 
 if __name__ == "__main__":
+    # Use command-line args if provided, else defaults
     if len(sys.argv) == 4:
         name = sys.argv[1]
         total_classes = int(sys.argv[2])
         attended_classes = int(sys.argv[3])
-
-       
     else:
-        name = Manju
+        name = "Manju"
         total_classes = 100
         attended_classes = 90
-        
-        percentage = calculate_attendance_percentage(attended_classes, total_classes)
-        eligibility = get_exam_eligibility(percentage)
 
-        print(f"Name: {name}")
-        print(f"Attendance Percentage: {percentage:.2f}%")
-        print(f"Status: {eligibility}")
+    # Calculate percentage and eligibility
+    percentage = calculate_attendance_percentage(attended_classes, total_classes)
+    eligibility = get_exam_eligibility(percentage)
+
+    # Print result
+    print(f"Name: {name}")
+    print(f"Attendance Percentage: {percentage:.2f}%")
+    print(f"Status: {eligibility}")

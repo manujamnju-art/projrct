@@ -1,31 +1,20 @@
+# attendance.py
 import sys
 
-if len(sys.argv) != 4:
-    print("Usage: python attendance.py <name> <total_classes> <attended_classes>")
-    sys.exit(1)
-else:
-    # Read inputs
+def calculate_attendance_percentage(attended, total):
+    return (attended / total) * 100
+
+def get_exam_eligibility(percentage):
+    return "Eligible" if percentage >= 75 else "Not Eligible"
+
+if __name__ == "__main__":
     name = sys.argv[1]
     total_classes = int(sys.argv[2])
     attended_classes = int(sys.argv[3])
 
-    # Validate total classes
-    if total_classes <= 0:
-        print("Total classes must be greater than zero")
-        sys.exit(1)
+    percentage = calculate_attendance_percentage(attended_classes, total_classes)
+    eligibility = get_exam_eligibility(percentage)
 
-    # Calculate attendance percentage
-    percentage = (attended_classes / total_classes) * 100
-
-    # Determine eligibility using if-else
-    if percentage >= 75:
-        status = "Eligible for Exam"
-    else:
-        status = "Not Eligible for Exam"
-
-    # Print report
-    print(f"Student Name       : {name}")
-    print(f"Total Classes      : {total_classes}")
-    print(f"Attended Classes   : {attended_classes}")
-    print(f"Attendance Percent : {percentage:.2f}%")
-    print(f"Status             : {status}")
+    print(f"Name: {name}")
+    print(f"Attendance Percentage: {percentage:.2f}%")
+    print(f"Status: {eligibility}")
